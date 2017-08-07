@@ -6,7 +6,7 @@
 
 | 必须插件       | 说明                |
 | ---------- | :---------------- |
-| ESLint     | javascript 严格模式插件 |
+| ESLint(暂不启用)     | javascript 严格模式插件 |
 | EditConfig | 一致代码风格插件          |
 
 ``` bash
