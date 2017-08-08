@@ -1,21 +1,12 @@
 <template>
   <div id="app">
-    <header-page></header-page>
-    <content-page></content-page>
+    <router-view></router-view>
   </div>
 </template>
-
 <script>
-import headerPage from '@/components/base/header';
-import contentPage from '@/components/base/content';
-
 export default {
   name: 'app',
-  components: {
-    headerPage, contentPage
-  }
 }
-
 </script>
 
 <style>
