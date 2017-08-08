@@ -1,5 +1,7 @@
 import http from 'utils/http';
-import setToken from 'utils/token';
+import {
+  setToken
+} from 'utils/token';
 
 /**
  * 用户登录
