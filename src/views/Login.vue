@@ -3,13 +3,13 @@
     <el-form autoComplete="on" ref="loginForm" label-position="left" label-width="0px" class="card-box login-form">
       <h3 class="title">系统登录</h3>
       <el-form-item prop="email">
-        <el-input name="email" type="text" autoComplete="on" placeholder="邮箱"></el-input>
+        <el-input name="email" type="text" autoComplete="on" v-model="login.username" placeholder="邮箱"></el-input>
       </el-form-item>
       <el-form-item prop="password">
-        <el-input name="password" type="password" autoComplete="on" placeholder="密码"></el-input>
+        <el-input name="password" type="password" autoComplete="on" v-model="login.password" placeholder="密码"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary">
+        <el-button type="primary" @click="submit()">
           登录
         </el-button>
       </el-form-item>
@@ -23,6 +23,23 @@
 </template>
 
 <script>
+import { login } from 'api/login';
+export default {
+  data() {
+    return {
+      login: {
+        username: "",
+        password: ""
+      }
+    }
+  },
+  methods: {
+    submit() {
+      debugger;
+      login(this.login.username, this.login.password);
+    }
+  }
+}
 
 </script>
 

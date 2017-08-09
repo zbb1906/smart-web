@@ -9,6 +9,7 @@ import {
  * @param {string} password
  */
 export function login(username, password) {
+  debugger;
   const data = {
     username,
     password
