@@ -1,25 +1,17 @@
 import http from 'utils/http';
-import {
-  setToken
-} from 'utils/token';
 
 /**
  * 用户登录
- * @param {string} usernam
- * @param {string} password
+ * @param {obj} loginDto
  */
-export function login(username, password) {
-  debugger;
-  const data = {
-    username,
-    password
-  }
+export function login(loginDto) {
   return http({
     method: 'post',
     url: '/login',
-    data
+    data: loginDto
   })
 }
+
 /**
  * 用户登出
  */

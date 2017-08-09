@@ -3,14 +3,17 @@
     <el-form autoComplete="on" ref="loginForm" label-position="left" label-width="0px" class="card-box login-form">
       <h3 class="title">系统登录</h3>
       <el-form-item prop="email">
-        <el-input name="email" type="text" autoComplete="on" v-model="login.username" placeholder="邮箱"></el-input>
+        <el-input name="email" type="text" autoComplete="on" v-model="loginForm.username" placeholder="邮箱"></el-input>
       </el-form-item>
       <el-form-item prop="password">
-        <el-input name="password" type="password" autoComplete="on" v-model="login.password" placeholder="密码"></el-input>
+        <el-input name="password" type="password" autoComplete="on" v-model="loginForm.password" placeholder="密码"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submit()">
           登录
+        </el-button>
+        <el-button type="primary" @click="submit2()">
+          登录2
         </el-button>
       </el-form-item>
     </el-form>
@@ -23,11 +26,11 @@
 </template>
 
 <script>
-import { login } from 'api/login';
+
 export default {
   data() {
     return {
-      login: {
+      loginForm: {
         username: "",
         password: ""
       }
@@ -35,8 +38,19 @@ export default {
   },
   methods: {
     submit() {
-      debugger;
-      login(this.login.username, this.login.password);
+      this.$store.dispatch('login', this.loginForm).then((data) => {
+        console.log("login Login.vue");
+        console.log(data);
+      }).catch(() => {
+
+      })
+    },
+    submit2() {
+      this.$store.dispatch('login2', this.loginForm).then((data) => {
+        console.log("login2 Login.vue");
+        console.log(data);
+      })
+
     }
   }
 }
