@@ -27,7 +27,7 @@ const user = {
      * 前端登出 token是无状态的, 直接丢弃此token 无需通知后台
      */
     logout: ({ commit }) => {
-      setToken('');
+      removeToken();
       commit('SET_TOKEN', '');
     },
     /**
