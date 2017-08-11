@@ -3,9 +3,9 @@ import Router from 'vue-router';
 import routerMap from './router'
 import NProgress from 'nprogress'; // 进度条插件
 import 'nprogress/nprogress.css';
-import {
-  getToken
-} from 'utils/token';
+import { getToken } from 'utils/token';
+import store from '../store';
+
 import whiteList from './whitelist'; // 登白名单
 
 //const routerMap = require('./router');
@@ -24,11 +24,19 @@ router.beforeEach((to, from, next) => {
   NProgress.start(); // 开启Progress
   if (getToken()) { // 判断是否有token
     if (to.path === '/login') {
-      next({
-        path: '/'
-      });
+      next({ path: '/' });
     } else {
-      next();
+      if (store.getters.menus.length === 0) {  // 如果没有菜单 需要去后台拉取用户信息
+        store.dispatch('getInfo').then(results => {
+          next();
+        }).catch(error => { //产生异常 登出
+          store.dispatch('logout').then(() => {
+            next({ path: '/login' });
+          });
+        });
+      } else {
+        next();
+      }
     }
   } else {
     if (whiteList.indexOf(to.path) !== -1) { // 在免登录白名单，直接进入

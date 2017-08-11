@@ -12,9 +12,6 @@
         <el-button type="primary" @click="submit()">
           登录
         </el-button>
-        <el-button type="primary" @click="submit2()">
-          登录2
-        </el-button>
       </el-form-item>
     </el-form>
 
@@ -38,19 +35,10 @@ export default {
   },
   methods: {
     submit() {
-      this.$store.dispatch('login', this.loginForm).then((data) => {
-        console.log("login Login.vue");
-        console.log(data);
+      this.$store.dispatch('login', this.loginForm).then(() => {
+        this.$router.push({ path: '/' });
       }).catch(() => {
-
       })
-    },
-    submit2() {
-      this.$store.dispatch('login2', this.loginForm).then((data) => {
-        console.log("login2 Login.vue");
-        console.log(data);
-      })
-
     }
   }
 }
